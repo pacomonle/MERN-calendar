@@ -1,5 +1,32 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+##### Instalaciones #####
+# index.html
+```
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous" />
+
+```
+## react-router-dom
+# npm install react-router-dom
+
+## libreria big-calendar
+# npm i react-big-calendar
+
+## libreria moment
+# npm i moment
+
+## libreria react-modal
+# npm i react-modal
+
+## libreria react-date-time-picker
+# npm i react-datetime-picker
+
+## libreria sweet alert 2
+# npm i sweetalert2
+
+## instalacion redux
+#  npm install react-redux redux redux-thunk
+
 ## Available Scripts
 
 In the project directory, you can run:
