@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Navbar from '../ui/Navbar'
 import { Calendar, momentLocalizer }from 'react-big-calendar'
 import 'react-big-calendar/lib/css/react-big-calendar.css'
@@ -9,7 +9,7 @@ import CalendarEvent from './CalendarEvent'
 import CalendarModal from './CalendarModal'
 import { uiOpenModal } from '../../actions/ui'
 import { useDispatch, useSelector } from 'react-redux'
-import { eventClearActiveEvent, eventSetActive } from '../../actions/events'
+import { eventClearActiveEvent, eventSetActive, eventStartLoading } from '../../actions/events'
 import AddNewFab from '../ui/AddNewFab'
 import { DeleteEventFab } from '../ui/DeleteEventFab'
 
@@ -25,26 +25,22 @@ const localizer = momentLocalizer(moment) // or globalizeLocalizer
 const CalendarScreen = () => {
  
 const { events, activeEvent } = useSelector( state => state.calendar );    
-
+const { uid } = useSelector( state => state.auth );
 const [lastView, setlastView] = useState(localStorage.getItem('lastView') || 'month')
 const dispatch = useDispatch()
 
 
 
-const eventStyleGetter = (event, start, end, isSelected) => {
-  // console.log(event, start, end, isSelected)
-   const style = {
-       backgrounColor: '#367CF7',
-       borderRadius: '0px',
-       opacity: '0.8',
-       display: 'block',
-       color: 'white'
-   }
 
-   return {
-       style
-   }
-}
+
+useEffect(() => {
+        
+    dispatch( eventStartLoading() )
+ 
+
+}, [ dispatch ])
+
+
 
 // EVENTOS DEL CALENDAR
 
@@ -69,6 +65,22 @@ const onSelectSlot = (e) => {
     console.log(e)
     dispatch( eventClearActiveEvent() );
 }
+const eventStyleGetter = ( event, start, end, isSelected ) => {
+// console.log(event, start, end, isSelected)
+    const style = {
+        backgroundColor: ( uid === event.user._id ) ? '#367CF7' : '#465660',
+        borderRadius: '0px',
+        opacity: 0.8,
+        display: 'block',
+        color: 'white'
+    }
+
+
+    return {
+        style
+    }
+};
+
 
     return (
         <div className='calendar-screen'>

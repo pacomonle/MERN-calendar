@@ -1,7 +1,7 @@
 import { types } from "../types/types"
-import moment from 'moment'
+// import moment from 'moment'
 
-
+/*
 const stateInitial = {
     events: [{
         id: new Date().getTime(),
@@ -17,6 +17,12 @@ const stateInitial = {
     }],
     activeEvent: null
 }
+*/
+
+const stateInitial = {
+    events: [],
+    activeEvent: null
+};
 
 const calendarReducer = (state = stateInitial, action) => {
     switch ( action.type ) {
@@ -59,6 +65,17 @@ const calendarReducer = (state = stateInitial, action) => {
                 ),
                 activeEvent: null
             }
+
+        case types.eventLoaded:
+             return {
+                    ...state,
+                    events: [ ...action.payload ]
+                }
+    
+        case types.eventLogout:
+            return {
+                    ...stateInitial
+                }
 
         default:
             return state;

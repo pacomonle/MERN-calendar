@@ -5,7 +5,7 @@ import moment from 'moment'
 import Swal from 'sweetalert2';
 import { useDispatch, useSelector } from 'react-redux';
 import { uiCloseModal } from '../../actions/ui';
-import { eventAddNew, eventClearActiveEvent, eventUpdated } from '../../actions/events';
+import { eventStartAddNew, eventClearActiveEvent, eventStartUpdate } from '../../actions/events';
 
 const customStyles = {
     content : {
@@ -77,6 +77,8 @@ const openModal = () =>{
 }
 */
 
+
+
 const handleStartDateChange = (e) => {
    // console.log(e)
     setdateStart(e)
@@ -102,6 +104,7 @@ const handleSubmitForm = (e) => {
     // validaciones
     const momentStart = moment( start );
     const momentEnd = moment( end );
+
     if ( momentStart.isSameOrAfter( momentEnd ) ) {
         return Swal.fire('Error','La fecha fin debe de ser mayor a la fecha de inicio', 'error');
     }
@@ -110,10 +113,11 @@ const handleSubmitForm = (e) => {
         return setTitleValid(false);
     }
 
-
     if ( activeEvent ) {
-       dispatch( eventUpdated( formValues ) )
+        dispatch( eventStartUpdate( formValues ) )
     } else {
+        dispatch( eventStartAddNew(formValues) );
+        /*
         dispatch( eventAddNew({
             ...formValues,
             id: new Date().getTime(),
@@ -122,12 +126,21 @@ const handleSubmitForm = (e) => {
                 name: 'Fernando'
             }
         }) );
+        */
     }
 
 
     setTitleValid(true);
-    closeModal()
+    closeModal();
+    
 }
+
+
+
+   
+
+
+
 
 
     return (
