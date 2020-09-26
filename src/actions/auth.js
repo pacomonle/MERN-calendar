@@ -1,5 +1,6 @@
 import { fetchSinToken, fetchConToken } from '../helpers/fetch';
 import { types } from '../types/types';
+import { eventLogout }  from './events'
 import Swal from 'sweetalert2';
 
 
@@ -84,6 +85,7 @@ export const startLogout = () => {
 
         localStorage.clear();
         dispatch( logout() );
+        dispatch( eventLogout() )
     }
 }
 
