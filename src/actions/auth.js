@@ -70,11 +70,11 @@ export const startChecking = () => {
     }
 }
 
-const checkingFinish = () => ({ type: types.authCheckingFinish });
+export const checkingFinish = () => ({ type: types.authCheckingFinish });
 
 
 
-const login = ( user ) => ({
+export const login = ( user ) => ({
     type: types.authLogin,
     payload: user
 });
@@ -89,4 +89,4 @@ export const startLogout = () => {
     }
 }
 
-const logout = () => ({ type: types.authLogout })
+export const logout = () => ({ type: types.authLogout })

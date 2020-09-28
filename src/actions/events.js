@@ -119,7 +119,7 @@ export const eventStartLoading = () => {
     }
 }
 
-const eventLoaded = (events) => ({
+export const eventLoaded = (events) => ({
     type: types.eventLoaded,
     payload: events
 })

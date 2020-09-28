@@ -27,6 +27,16 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 ## instalacion redux
 #  npm install react-redux redux redux-thunk
 
+## produccion 
+# build de produccion - npm run build
+
+## Librerias para pruebas
+# npm i --save-dev enzyme enzyme-adapter-react-16
+# npm install --save-dev enzyme-to-json  
+# npm install redux-mock-store --save-dev
+
+# levantar los test -> npm run test
+
 ## Available Scripts
 
 In the project directory, you can run:
